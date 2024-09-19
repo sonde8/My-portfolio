@@ -28,6 +28,7 @@ const Join = () => {
 
   return (
     <div>
+      <h3>회원가입</h3>
       <form onSubmit={sendData}>
         ID : <input type='text' onChange={e => setId(e.target.value)}></input>
         PW : <input type='password' onChange={e => setPw(e.target.value)}></input><br/>
