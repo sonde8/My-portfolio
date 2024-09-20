@@ -9,13 +9,14 @@ const Join = () => {
   const [id, setId] = useState()
   const [pw, setPw] = useState()
   const nav = useNavigate()
+  
   const sendData = async (e) => {
     e.preventDefault()
     console.log('Data', id, pw, userName)
 
     // try/catch : 예외처리, 에러가 발생할 가능성이 있는 부분을 try-catch
     try {
-      const res = await instance.post('/getData', { id : id, pw : pw, userName : userName })
+      const res = await instance.post('/getData', { id: id, pw: pw, userName: userName })
       console.log('res', res.data.result)
       if (res.data.result === 'success') {
         window.alert('회원가입 성공')
@@ -34,19 +35,9 @@ const Join = () => {
       <h2>회원가입</h2>
       <form onSubmit={sendData} className='join-form'>
         <div className='input-group'>
-          <label htmlFor='username'>USER NAME</label>
-          <input 
-            type='text' 
-            id='username'
-            value={userName}
-            onChange={e => setUserName(e.target.value)}
-            required
-          />
-        </div>
-        <div className='input-group'>
           <label htmlFor='id'>ID</label>
-          <input 
-            type='text' 
+          <input
+            type='text'
             id='id'
             value={id}
             onChange={e => setId(e.target.value)}
@@ -55,11 +46,21 @@ const Join = () => {
         </div>
         <div className='input-group'>
           <label htmlFor='password'>PASSWORD</label>
-          <input 
-            type='password' 
+          <input
+            type='password'
             id='password'
             value={pw}
             onChange={e => setPw(e.target.value)}
+            required
+          />
+        </div>
+        <div className='input-group'>
+          <label htmlFor='username'>USER NAME</label>
+          <input
+            type='text'
+            id='username'
+            value={userName}
+            onChange={e => setUserName(e.target.value)}
             required
           />
         </div>
