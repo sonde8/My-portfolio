@@ -9,7 +9,7 @@ const Join = () => {
   const [id, setId] = useState()
   const [pw, setPw] = useState()
   const nav = useNavigate()
-  
+
   const sendData = async (e) => {
     e.preventDefault()
     console.log('Data', id, pw, userName)
@@ -18,8 +18,14 @@ const Join = () => {
     try {
       const res = await instance.post('/getData', { id: id, pw: pw, userName: userName })
       console.log('res', res.data.result)
+
       if (res.data.result === 'success') {
         window.alert('회원가입 성공')
+        
+        /* Header는 Routes에 포함되어있지 않기 때문에
+            Routes를 이용한 nav를 사용할 때 header는 렌더링이 되지않음
+            => window.location.href <- 전체 새로고침
+        */
         nav('/')
       } else {
         window.alert('회원가입 실패')
