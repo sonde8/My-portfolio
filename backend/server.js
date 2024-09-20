@@ -8,7 +8,7 @@ const path = require('path')
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')))
 app.use(express.json())
 
-// CORS 오류 해결
+// CORS 오류 해결 반드시 router 위에 작성
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
