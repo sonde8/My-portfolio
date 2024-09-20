@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import instance from '../axios'
+import { Link } from 'react-router-dom'
 
 const Login = ({ setUser }) => {
 
@@ -53,14 +54,34 @@ const Login = ({ setUser }) => {
 
 
   return (
-    <div className='login-form'>
-      <h3>로그인</h3>
-      <form onSubmit={handleLogin}>
-        ID : <input type='text' onChange={e => setId(e.target.value)}></input>
-        <br />
-        PW : <input type='password' onChange={e => setPw(e.target.value)}></input>
-        <input type='submit' value='로그인'></input>
+    <div className='login-container'>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin} className='login-form'>
+        <div className='input-group'>
+          <label htmlFor='username'>USER NAME</label>
+          <input 
+            type='text' 
+            id='username'
+            value={id}
+            onChange={e => setId(e.target.value)}
+            required
+          />
+        </div>
+        <div className='input-group'>
+          <label htmlFor='password'>PASSWORD</label>
+          <input 
+            type='password' 
+            id='password'
+            value={pw}
+            onChange={e => setPw(e.target.value)}
+            required
+          />
+        </div>
+        <button type='submit' className='login-button'>LOGIN</button>
       </form>
+      <div className='form-footer'>
+        <Link to="/join" className='join-link'>회원가입</Link>
+      </div>
     </div>
   )
 }
