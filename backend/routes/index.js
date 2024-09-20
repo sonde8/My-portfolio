@@ -28,16 +28,18 @@ router.post('/getData', (req, res) => {
 })
 
 // 로그인 라우터
-router.post('getLoginData', (req, res) => {
+router.post('/getLoginData', (req, res) => {
   console.log('getLoginData', req.body)
   let { id, pw } = req.body
 
-  let sql = 'SELECT ID FROM LINK_MEMBER WHERE ID=? PW=?'
+  let sql = 'SELECT ID FROM LINK_MEMBER WHERE ID=? AND PW=?'
   conn.query(sql, [id, pw], (err, rows) => {
     console.log('rows', rows)
     if (rows.length > 0){
-      req.session.userId = id
-      console.log('req.session', req.session.userId)
+      
+      // 이 녀석 때문에 로그인 기능이 안됨
+      // req.session.userId = id
+      // console.log('req.session', req.session.userId)
 
       // 로그인 성공
       res.json({ result : 'success', id : id })
